@@ -3,6 +3,7 @@ import os
 import pandas as pd
 import numpy as np
 
+
 def parse_csv(file_path: str) -> pd.DataFrame:
     """
     Parses a single EyeLInk Data Viewer text/csv export file.
