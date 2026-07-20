@@ -1,4 +1,4 @@
-import pandas as pd
+import numpy as np
 from scipy.spatial.distance import euclidean
 from scipy import signal
 from fastdtw import fastdtw
@@ -99,7 +99,7 @@ def run_dtw(signal_dict, template_speaker, target_sr=1000):
     """
 
     template_phrases = {}
-    for filename, meta in signal_dict.items():
+    for file_name, meta in signal_dict.items():
         if meta["speaker"] == template_speaker:
             template_phrases[meta["stimulus_id"]] = meta
             meta["warp_path"] = None

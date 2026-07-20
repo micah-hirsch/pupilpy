@@ -4,12 +4,11 @@ import pandas as pd
 import numpy as np
 from scipy.io import wavfile
 
-def load_audio(audio_dir, strict_naming = T):
+def load_audio(audio_dir, strict_naming = True):
     """
-    Loads .wav files from a directory, extracts metadata, and returns a pandas Dataframe.
+    Loads .wav files from a directory, extracts metadata, and returns a dictionary with the signal data.
     """ 
 
-    data_list = []
     signal_dict = {}
 
     wav_files = [f for f in os.listdir(audio_dir) if f.lower().endswith('.wav')]
@@ -50,8 +49,6 @@ def load_audio(audio_dir, strict_naming = T):
         
         except Exception as e:
             print(f"Error processing {file_name}: {e}")
-
-    df = pd.DataFrame(data_list)
 
     return signal_dict
         

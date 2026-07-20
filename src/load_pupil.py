@@ -2,6 +2,7 @@ import glob
 import os
 import pandas as pd
 import numpy as np
+from pathlib import Path
 
 
 def parse_csv(file_path: str) -> pd.DataFrame:
@@ -10,9 +11,9 @@ def parse_csv(file_path: str) -> pd.DataFrame:
     Dynamically routes eye measurements
     """
 
-    df = pd.read_csv(file_path, sep=None, engine='python')
+    df = pd.read_csv(file_path, sep=None, engine='python', na_values=['.', 'MISSING', ''])
 
-    df.columns = df.columns.str.lower()
+    df.columns = df.columns.astype(str).str.strip().str.lower().str.replace(r'[\s\-]+', '_', regex=True).str.replace(r'[^\w_]', '', regex=True)
 
     df = df.rename(columns={
         'recording_session_label': 'subject',
@@ -41,7 +42,7 @@ def parse_csv(file_path: str) -> pd.DataFrame:
 
     return df[keep_columns]
 
-def load_folder(folder_path: str = ".") -> pd.Dataframe:
+def load_folder(folder_path: str = ".") -> pd.DataFrame:
     """
     Loops through a directory, processing each eye-tracking file, and merges them into a Dataframe
     """
