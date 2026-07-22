@@ -8,7 +8,7 @@ def pupil_smooth(pupil_signal, cutoff, fs, order = 1):
     
     Parameters:
     -----------
-    pupil_signal: np.ndarray
+    pupil_signal: pd.Series
         The 1D pupil dilation signal array.
     cutoff: int
         The cutoff frequency for the low-pass filter.
