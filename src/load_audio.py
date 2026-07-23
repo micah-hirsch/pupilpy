@@ -20,7 +20,7 @@ def load_audio(audio_dir, strict_naming = True):
         try:
             sample_rate, audio_data = wavfile.read(file_path)
             duration_ms = (len(audio_data)/sample_rate) * 1000
-            name_noext, _ = os.path.splittext(file_name)
+            name_noext, _ = os.path.splitext(file_name)
             parts = name_noext.split('_')
 
             speaker = None
